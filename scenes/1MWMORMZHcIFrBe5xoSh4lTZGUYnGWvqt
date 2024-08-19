@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://cic81eqpg47a"]
+
+[ext_resource type="Script" path="res://scripts/control.gd" id="1_otn0k"]
+[ext_resource type="PackedScene" uid="uid://cvi3ur5d6lusr" path="res://scenes/ui.tscn" id="1_u7dwj"]
+[ext_resource type="PackedScene" uid="uid://ccoee724jv8pn" path="res://scenes/paddle.tscn" id="2_cxu18"]
+[ext_resource type="PackedScene" uid="uid://b54bwr16rsidu" path="res://scenes/ball.tscn" id="4_td4pj"]
+
+[sub_resource type="Gradient" id="Gradient_qf0rv"]
+offsets = PackedFloat32Array(0.298701, 0.435065, 0.753247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.25641, 0.25641, 0.25641, 1, 0.675214, 0.675214, 0.675214, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ty7d8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s3dw3"]
+width = 1
+height = 1
+color_ramp = SubResource("Gradient_qf0rv")
+noise = SubResource("FastNoiseLite_ty7d8")
+
+[node name="game" type="Node2D"]
+process_mode = 3
+process_priority = 1
+script = ExtResource("1_otn0k")
+
+[node name="ui" parent="." instance=ExtResource("1_u7dwj")]
+
+[node name="mainMenu" parent="ui" index="0"]
+visible = true
+
+[node name="gui" parent="ui" index="1"]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="background" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(575, 323.75)
+scale = Vector2(1168, 666.5)
+texture = SubResource("NoiseTexture2D_s3dw3")
+
+[node name="paddle" parent="." instance=ExtResource("2_cxu18")]
+process_mode = 1
+position = Vector2(50, 252)
+enable = false
+right_paddle = false
+
+[node name="paddle2" parent="." instance=ExtResource("2_cxu18")]
+process_mode = 1
+position = Vector2(1080, 252)
+enable = false
+up = "o"
+down = "l"
+
+[node name="ball" parent="." instance=ExtResource("4_td4pj")]
+process_mode = 1
+visible = false
+position = Vector2(572, 300)
+enable = false
+
+[connection signal="mouse_entered" from="ui/mainMenu/VBoxContainer/start" to="." method="_on_start_mouse_entered"]
+[connection signal="pressed" from="ui/mainMenu/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="ui/mainMenu/VBoxContainer/exit" to="." method="_on_exit_mouse_entered"]
+[connection signal="pressed" from="ui/mainMenu/VBoxContainer/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ui/gui/topBar/MarginContainer/pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="ui/pauseMenu/VBox/reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="ui/pauseMenu/VBox/unpaused" to="." method="_on_unpaused_pressed"]
+
+[editable path="ui"]

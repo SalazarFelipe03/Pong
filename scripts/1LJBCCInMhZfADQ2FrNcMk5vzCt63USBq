@@ -1,0 +1,68 @@
+extends Area2D
+
+@export var enable = true
+@onready var audioPlayer = get_node("AudioStreamPlayer")
+@onready var particles   = get_node("CPUParticles2D")
+
+var velocity = Vector2(-400,0)
+var speed = 400
+const ACC_INC = 40
+
+
+func _process(delta):
+	#debug shenanigans
+	Global.ballSpeed = speed
+	
+	#particles system
+	if speed >= 700:
+		particles.emitting = true
+	else: particles.emitting = false
+	
+	if enable == true:
+		self.visible = true
+		movement(delta)
+		score()
+	else:
+		visible = false
+
+func movement(delta):
+	self.position += velocity * delta
+	if self.global_position.y >= 644 and velocity.y > 0:
+		velocity.y *= -1
+	elif self.global_position.y <= 75 and velocity.y < 0:
+		velocity.y *= -1
+
+func score():
+	if self.global_position.x >= 1158:
+		Global.left_score += 1
+		velocity = Vector2(-200,0)
+		speed = 400
+		self.global_position = Vector2(572, 300)
+	elif self.global_position.x <= 0:
+		Global.right_score += 1
+		velocity = Vector2(200, 0)
+		speed = 400
+		self.global_position = Vector2(572, 300)
+
+func _on_area_entered(area):
+	if area.is_in_group("paddle"):
+		speed += ACC_INC
+		
+		#audio
+		audioPlayer.pitch_scale = randf_range(0.8, 1.2)
+		audioPlayer.play()
+		
+		#setting necesary variables
+		var dir = sign(velocity.x)
+		var paddle_center = area.global_position + Vector2(12,72)
+		var ball_center   = self.global_position + Vector2(8,8)
+		var area_rect = area.get_node("col").shape.get_rect().size
+		
+		#defining new direction of the ball
+		var angle  = (ball_center.y - paddle_center.y) * (PI / area_rect.y)
+		angle = clamp(angle, -1, 1)
+		var new_dir = Vector2(cos(angle), sin(angle))
+		
+		#applying new direction
+		velocity = new_dir * speed
+		velocity.x *= -dir

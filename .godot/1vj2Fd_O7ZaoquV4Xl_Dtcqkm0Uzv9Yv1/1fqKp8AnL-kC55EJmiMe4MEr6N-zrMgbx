@@ -1,0 +1,20 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1712569076
+default_bus_layout.tres::AudioBusLayout::4347570974456159240::1712515425::0::1::::<><>::
+icon.svg::CompressedTexture2D::4975039044596640591::1712273811::1712569078::1::::<><>::
+::res://assets/::1712277295
+::res://assets/font/::1712274682
+Retro Gaming.ttf::FontFile::7458011007844792069::1712274221::1712569078::1::::<><>::
+::res://assets/sounds/::1712277396
+menu select.wav::AudioStreamWAV::5044459430124881214::1712277396::1712569078::1::::<><>::
+ping.wav::AudioStreamWAV::843361917922097144::1712277302::1712569078::1::::<><>::
+::res://scenes/::1712515960
+ball.gd::GDScript::-1::1712507355::0::1::::<>Area2D<>::
+ball.tscn::PackedScene::4552053886654280218::1712515960::0::1::::<><>::res://scenes/ball.gd<>uid://masbu80pno1u::::res://assets/sounds/ping.wav
+game.tscn::PackedScene::157074447026541140::1712515692::0::1::::<><>::res://scripts/control.gd<>uid://cvi3ur5d6lusr::::res://scenes/ui.tscn<>uid://ccoee724jv8pn::::res://scenes/paddle.tscn<>uid://b54bwr16rsidu::::res://scenes/ball.tscn
+paddle.tscn::PackedScene::4942372078153231399::1712515692::0::1::::<><>::res://scripts/paddle.gd
+ui.tscn::PackedScene::6265058836912193005::1712515692::0::1::::<><>::uid://deiyl7sbq1idp::::res://assets/font/Retro Gaming.ttf<>uid://cd4trllswys7w::::res://assets/sounds/menu select.wav
+::res://scripts/::1712507173
+control.gd::GDScript::-1::1712507173::0::1::::<>Node2D<>::
+global.gd::GDScript::-1::1712506550::0::1::::<>Node<>::
+paddle.gd::GDScript::-1::1712503364::0::1::::<>Area2D<>::

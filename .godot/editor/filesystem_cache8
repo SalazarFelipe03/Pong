@@ -1,0 +1,33 @@
+fc8a56933c4b1c8d796fdb8f7a9f9475
+::res://::1712932420
+default_bus_layout.tres::AudioBusLayout::4347570974456159240::1712779958::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1712886404::0::1::::<><>::
+icon.svg::CompressedTexture2D::4975039044596640591::1712580126::1712580130::1::::<><>::
+::res://android/::1712574376
+::res://assets/::1712831969
+::res://assets/12S_yoE0Ic763c_B7foWw3AYH_cO8gxoj/::1712831969
+::res://assets/15tQl4JH7RJi3OXZIhSFraDnv39XOJjj0/::1712831969
+::res://assets/font/::1712831969
+Retro Gaming.ttf::FontFile::7458011007844792069::1712580134::1712580132::1::::<><>::
+::res://assets/sounds/::1712917441
+explotion.wav::AudioStreamWAV::4473860219543237610::1712863110::1712885882::1::::<><>::
+menuMove.wav::AudioStreamWAV::5044459430124881214::1712580146::1712780102::1::::<><>::
+menuSelect.wav::AudioStreamWAV::4141259189922585815::1712780068::1712780094::1::::<><>::
+ping.wav::AudioStreamWAV::843361917922097144::1712580144::1712580152::1::::<><>::
+pong.wav::AudioStreamWAV::515715831887191357::1712859718::1712859718::1::::<><>::
+sfxr-2021-01-24-09-12-07.wav::AudioStreamWAV::4473860219543237610::1712863110::1712863110::1::::<><>::
+::res://builds/::1712831977
+::res://builds/alpha/::1712831977
+::res://builds/beta/::1712839860
+::res://scenes/::1712931404
+ball.tscn::PackedScene::4552053886654280218::1712931404::0::1::::<><>::res://scripts/ball.gd<>uid://hl208we1636x::::res://assets/sounds/pong.wav<>uid://b40f3a0pawxq5::::res://assets/sounds/sfxr-2021-01-24-09-12-07.wav
+game.tscn::PackedScene::157074447026541140::1712931404::0::1::::<><>::res://scripts/control.gd<>uid://cvi3ur5d6lusr::::res://scenes/ui.tscn<>uid://ccoee724jv8pn::::res://scenes/paddle.tscn<>uid://b54bwr16rsidu::::res://scenes/ball.tscn<>res://scripts/Camera2D.gd
+paddle.tscn::PackedScene::4942372078153231399::1712931404::0::1::::<><>::res://scripts/paddle.gd
+ui.tscn::PackedScene::6265058836912193005::1712931404::0::1::::<><>::res://scripts/ui.gd<>uid://deiyl7sbq1idp::::res://assets/font/Retro Gaming.ttf<>uid://cd4trllswys7w::::res://assets/sounds/menuMove.wav
+::res://scripts/::1712931020
+ball.gd::GDScript::-1::1712924990::0::1::::<>Area2D<>::
+Camera2D.gd::GDScript::-1::1712885716::0::1::::<>Camera2D<>::
+control.gd::GDScript::-1::1712931020::0::1::::<>Node2D<>::
+global.gd::GDScript::-1::1712766988::0::1::::<>Node<>::
+paddle.gd::GDScript::-1::1712929218::0::1::::<>Area2D<>::
+ui.gd::GDScript::-1::1712780764::0::1::::<>Control<>::

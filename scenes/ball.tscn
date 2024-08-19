@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://b54bwr16rsidu"]
+
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_7rwl4"]
+[ext_resource type="AudioStream" uid="uid://hl208we1636x" path="res://assets/sounds/pong.wav" id="2_qofcu"]
+[ext_resource type="AudioStream" uid="uid://b40f3a0pawxq5" path="res://assets/sounds/sfxr-2021-01-24-09-12-07.wav" id="3_mun3n"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xmkag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfe28"]
+size = Vector2(16, 16)
+
+[sub_resource type="Curve" id="Curve_p53el"]
+_data = [Vector2(0, 1), 0.0, -0.454352, 0, 0, Vector2(1, 0.441509), -0.526978, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vhed2"]
+offsets = PackedFloat32Array(0, 0.538889, 0.866667, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.983333, 1, 0, 1, 1, 1, 0.45098, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_ghb8b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.350943), -0.858222, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_72nth"]
+offsets = PackedFloat32Array(0, 0.194444, 0.544444, 0.616667, 0.805556, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.366667, 0, 1, 1, 0, 0, 1, 0.23, 0.23, 0.23, 1, 0.152941, 0.027451, 0.027451, 0)
+
+[node name="ball" type="Area2D"]
+script = ExtResource("1_7rwl4")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("CanvasTexture_xmkag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_yfe28")
+
+[node name="pingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qofcu")
+max_polyphony = 5
+
+[node name="explotionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mun3n")
+
+[node name="flames" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(8, 7.84)
+amount = 30
+lifetime = 0.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 13.0
+initial_velocity_max = 74.07
+angle_min = -40.0
+angle_max = 40.0
+scale_amount_min = 14.0
+scale_amount_max = 14.0
+scale_amount_curve = SubResource("Curve_p53el")
+color_ramp = SubResource("Gradient_vhed2")
+
+[node name="explotion" type="CPUParticles2D" parent="."]
+process_mode = 3
+position = Vector2(8, 8)
+emitting = false
+amount = 75
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+spread = 75.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+damping_min = 10.0
+damping_max = 20.0
+scale_amount_min = 20.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_ghb8b")
+color_ramp = SubResource("Gradient_72nth")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

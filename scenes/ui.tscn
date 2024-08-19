@@ -1,0 +1,197 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvi3ur5d6lusr"]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_8wolr"]
+[ext_resource type="FontFile" uid="uid://deiyl7sbq1idp" path="res://assets/font/Retro Gaming.ttf" id="1_list1"]
+[ext_resource type="AudioStream" uid="uid://cd4trllswys7w" path="res://assets/sounds/menuMove.wav" id="3_l1l4g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ksx10"]
+font = ExtResource("1_list1")
+font_size = 165
+
+[sub_resource type="Theme" id="Theme_dqdr0"]
+default_font = ExtResource("1_list1")
+default_font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_e80kr"]
+font = ExtResource("1_list1")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0sts"]
+font = ExtResource("1_list1")
+font_size = 51
+
+[node name="ui" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8wolr")
+
+[node name="mainMenu" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1121.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="Label" type="Label" parent="mainMenu"]
+custom_minimum_size = Vector2(0, 385)
+layout_mode = 2
+text = "PONG"
+label_settings = SubResource("LabelSettings_ksx10")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="firstMenu" type="VBoxContainer" parent="mainMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="start" type="Button" parent="mainMenu/firstMenu"]
+layout_mode = 2
+theme = SubResource("Theme_dqdr0")
+text = "START
+"
+
+[node name="exit" type="Button" parent="mainMenu/firstMenu"]
+layout_mode = 2
+theme = SubResource("Theme_dqdr0")
+text = "EXIT"
+
+[node name="playMenu" type="VBoxContainer" parent="mainMenu"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="single" type="Button" parent="mainMenu/playMenu"]
+layout_mode = 2
+theme = SubResource("Theme_dqdr0")
+text = "1 PLAYER
+"
+
+[node name="multi" type="Button" parent="mainMenu/playMenu"]
+layout_mode = 2
+theme = SubResource("Theme_dqdr0")
+text = "2 PLAYER
+"
+
+[node name="exit" type="Button" parent="mainMenu/playMenu"]
+layout_mode = 2
+theme = SubResource("Theme_dqdr0")
+text = "EXIT"
+
+[node name="gui" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1111.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="topBar" type="HBoxContainer" parent="gui"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ballSpeed" type="Label" parent="gui/topBar"]
+custom_minimum_size = Vector2(449.585, 0)
+layout_mode = 2
+text = "Ball speed:"
+label_settings = SubResource("LabelSettings_e80kr")
+
+[node name="leftCounter" type="Label" parent="gui/topBar"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_i0sts")
+horizontal_alignment = 2
+
+[node name="rightCounter" type="Label" parent="gui/topBar"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_i0sts")
+
+[node name="MarginContainer" type="MarginContainer" parent="gui/topBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 25
+
+[node name="pause" type="Button" parent="gui/topBar/MarginContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_list1")
+theme_override_font_sizes/font_size = 41
+text = "| |"
+flat = true
+alignment = 2
+
+[node name="verticalLine" type="Line2D" parent="gui"]
+points = PackedVector2Array(576, -50, 576, 700)
+width = 4.0
+
+[node name="horizonatalLine" type="Line2D" parent="gui"]
+points = PackedVector2Array(-15, 75, 1200, 75)
+width = 4.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l1l4g")
+
+[node name="pauseMenu" type="PanelContainer" parent="."]
+process_mode = 1
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 984.0
+offset_bottom = 536.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="pauseMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="unpaused" type="Button" parent="pauseMenu/VBox"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_list1")
+theme_override_font_sizes/font_size = 30
+text = "RESUME"
+
+[node name="reset" type="Button" parent="pauseMenu/VBox"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_list1")
+theme_override_font_sizes/font_size = 30
+text = "RESET
+"
+
+[node name="exitToMenu" type="Button" parent="pauseMenu/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_list1")
+theme_override_font_sizes/font_size = 30
+text = "EXIT"
+
+[connection signal="mouse_entered" from="mainMenu/firstMenu/start" to="." method="_on_start_mouse_entered"]
+[connection signal="pressed" from="mainMenu/firstMenu/start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="mainMenu/firstMenu/exit" to="." method="_on_exit_mouse_entered"]
+[connection signal="pressed" from="mainMenu/firstMenu/exit" to="." method="_on_exit_pressed"]
+[connection signal="mouse_entered" from="mainMenu/playMenu/single" to="." method="_on_single_mouse_entered"]
+[connection signal="mouse_entered" from="mainMenu/playMenu/multi" to="." method="_on_multi_mouse_entered"]
+[connection signal="pressed" from="mainMenu/playMenu/exit" to="." method="_on_exit_pressed"]

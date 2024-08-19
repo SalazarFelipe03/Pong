@@ -1,0 +1,40 @@
+extends Area2D
+
+@export var enable       = true
+@export var up           = "w"
+@export var down         = "s"
+@export var right_paddle = true
+var motion = 0.0
+const ACC = 100.0
+const MAXSPEED = 800.0
+
+
+func _process(delta):
+	if enable == true:
+		visible = true
+		movement(delta)
+	else:
+		visible=false
+
+
+func _input(event):
+	if event is InputEventScreenTouch or event is InputEventScreenDrag:
+		if event.position.x > 574 and right_paddle == true:
+			self.global_position.y = event.position.y - 72
+		if event.position.x < 574 and right_paddle == false:
+			self.global_position.y = event.position.y - 72
+		
+		self.global_position.y = clamp(global_position.y, 75, 500)
+
+func movement(delta):
+	if Input.is_action_pressed(up):
+		motion -= ACC
+	elif Input.is_action_pressed(down):
+		motion += ACC
+	else:
+		motion = lerp(motion, 0.0, 10 * delta)
+	
+	self.global_position.y = clamp(global_position.y, 75, 500)
+	
+	motion=clamp(motion, -MAXSPEED, MAXSPEED)
+	self.global_position.y += (motion) * delta

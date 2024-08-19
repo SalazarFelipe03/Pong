@@ -1,0 +1,5 @@
+[folding]
+
+node_unfolds=[NodePath("texture"), PackedStringArray("Layout"), NodePath("col"), PackedStringArray("Transform")]
+resource_unfolds=["res://scenes/paddle.tscn::CanvasTexture_nnl36", PackedStringArray("Resource"), "res://scenes/paddle.tscn::RectangleShape2D_kfu6k", PackedStringArray("Resource")]
+nodes_folded=[]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccoee724jv8pn"]
+
+[ext_resource type="Script" path="res://scripts/paddle.gd" id="1_r4uq6"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nnl36"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfu6k"]
+size = Vector2(24, 144)
+
+[node name="paddle" type="Area2D" groups=["paddle"]]
+script = ExtResource("1_r4uq6")
+
+[node name="texture" type="TextureRect" parent="."]
+offset_right = 24.0
+offset_bottom = 144.0
+texture = SubResource("CanvasTexture_nnl36")
+
+[node name="col" type="CollisionShape2D" parent="."]
+position = Vector2(12, 72)
+shape = SubResource("RectangleShape2D_kfu6k")

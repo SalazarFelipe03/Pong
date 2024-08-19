@@ -1,0 +1,56 @@
+extends Node2D
+
+
+@onready var mainMenu = $ui/mainMenu
+@onready var gui      = $ui/gui
+@onready var audio    = $ui/AudioStreamPlayer
+@onready var paddle   = $paddle
+@onready var paddle2  = $paddle2
+@onready var ball     = $ball
+
+func _process(_delta):
+	gui.get_node("topBar").get_node("leftCounter").text = str(Global.left_score)
+	gui.get_node("topBar").get_node("rightCounter").text = str(Global.right_score)
+	gui.get_node("topBar").get_node("ballSpeed").text = str(Global.ballSpeed)
+
+func game_start():
+	mainMenu.visible = false
+	gui.visible      = true
+	paddle.enable    = true
+	paddle2.enable   = true
+	ball.enable      = true
+
+
+func _on_start_pressed():
+	game_start()
+
+
+func _on_exit_pressed():
+	get_tree().quit()
+
+func _on_exit_mouse_entered():
+	audio.play()
+
+
+func _on_start_mouse_entered():
+	audio.play()
+
+
+func _on_pause_pressed():
+	get_tree().paused = true
+	$ui/pauseMenu.visible = true
+
+
+func _on_unpaused_pressed():
+	get_tree().paused = false
+	$ui/pauseMenu.visible = false
+
+
+func _on_reset_pressed():
+	paddle.global_position.y = 252
+	paddle2.global_position.y = 252
+	ball.global_position = Vector2(572, 300)
+	ball.speed = 400
+	ball.velocity = Vector2(-200, 0)
+	Global.left_score = 0
+	Global.right_score = 0

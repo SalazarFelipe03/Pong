@@ -1,0 +1,8 @@
+res://scenes/game.tscn
+res://scenes/ui.tscn
+res://scenes/ball.tscn
+res://scenes/paddle.tscn
+res://scripts/paddle.gd
+res://scripts/ball.gd
+res://scripts/control.gd
+res://scripts/global.gd

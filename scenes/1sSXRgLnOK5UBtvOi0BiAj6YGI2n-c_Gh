@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://b54bwr16rsidu"]
+
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_7rwl4"]
+[ext_resource type="AudioStream" uid="uid://masbu80pno1u" path="res://assets/sounds/ping.wav" id="2_0m8xe"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xmkag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfe28"]
+size = Vector2(16, 16)
+
+[sub_resource type="Curve" id="Curve_p53el"]
+_data = [Vector2(0, 1), 0.0, -0.454352, 0, 0, Vector2(1, 0.441509), -0.526978, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vhed2"]
+offsets = PackedFloat32Array(0, 0.694444, 0.994444)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 0.639216, 0.60933, 0.60933, 0.60933, 1)
+
+[node name="ball" type="Area2D"]
+script = ExtResource("1_7rwl4")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("CanvasTexture_xmkag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_yfe28")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0m8xe")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(8, 7.84)
+amount = 30
+lifetime = 0.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 13.0
+initial_velocity_max = 74.07
+angle_min = -40.0
+angle_max = 40.0
+scale_amount_min = 14.0
+scale_amount_max = 14.0
+scale_amount_curve = SubResource("Curve_p53el")
+color_ramp = SubResource("Gradient_vhed2")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

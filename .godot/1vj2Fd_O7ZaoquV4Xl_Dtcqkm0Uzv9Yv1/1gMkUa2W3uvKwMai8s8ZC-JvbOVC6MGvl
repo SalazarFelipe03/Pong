@@ -1,0 +1,5 @@
+[folding]
+
+node_unfolds=[NodePath("."), PackedStringArray("Transform", "Process"), NodePath("ui"), PackedStringArray("Layout", "Process"), NodePath("CanvasLayer"), PackedStringArray("Layer"), NodePath("CanvasLayer/background"), PackedStringArray("Transform"), NodePath("paddle"), PackedStringArray("Transform"), NodePath("paddle2"), PackedStringArray("Transform"), NodePath("ball"), PackedStringArray("Visibility", "Transform")]
+resource_unfolds=["res://scenes/game.tscn::NoiseTexture2D_s3dw3", PackedStringArray("Resource")]
+nodes_folded=[NodePath("CanvasLayer")]
